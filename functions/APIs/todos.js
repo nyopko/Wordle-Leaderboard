@@ -50,3 +50,22 @@ exports.postOneScore = (request, response) => {
 			console.error(err);
 		});
 };
+
+exports.deleteScore = (request, response) => {
+    const document = db.doc(`/todos/${request.params.todoId}`);
+    document
+        .get()
+        .then((doc) => {
+            if (!doc.exists) {
+                return response.status(404).json({ error: 'Score not found' })
+            }
+            return document.delete();
+        })
+        .then(() => {
+            response.json({ message: 'Delete successfull' });
+        })
+        .catch((err) => {
+            console.error(err);
+            return response.status(500).json({ error: err.code });
+        });
+};

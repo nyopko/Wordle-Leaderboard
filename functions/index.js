@@ -13,4 +13,6 @@ app.get('/todos', getAllScores);
 
 app.post('/todo', postOneScore);
 
+app.delete('/todo/:todoId', deleteScore);
+
 exports.api = functions.https.onRequest(app);
