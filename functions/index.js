@@ -15,4 +15,6 @@ app.post('/todo', postOneScore);
 
 app.delete('/todo/:todoId', deleteScore);
 
+app.put('/todo/:todoId', editScore);
+
 exports.api = functions.https.onRequest(app);
