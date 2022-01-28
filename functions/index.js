@@ -7,7 +7,17 @@ const {
     postOneScore,
     deleteScore,
     editScore
-} = require('./APIs/todos')
+} = require('./APIs/todos');
+
+const {
+    loginUser
+} = require('./APIs/users');
+
+// Users
+app.post('/login', loginUser);
+
+
+// Scores 
 
 app.get('/todos', getAllScores);
 
