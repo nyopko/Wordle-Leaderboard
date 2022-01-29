@@ -3,6 +3,7 @@ const { db } = require('../util/admin');
 exports.getAllScores = (request, response) => {
 	db
 		.collection('todos')
+        .where('username', '==', request.user.username)
 		.orderBy('createAt', 'desc')
 		.get()
 		.then((data) => {
@@ -10,6 +11,7 @@ exports.getAllScores = (request, response) => {
 			data.forEach((doc) => {
 				todos.push({
                     todoId: doc.id,
+                    username: request.user.username,
                     score: doc.data().score,
 					body: doc.data().body,
 					createdAt: doc.data().createdAt,
@@ -33,6 +35,7 @@ exports.postOneScore = (request, response) => {
     }
     
     const newTodoItem = {
+        username: request.user.username,
         score: request.body.score,
         body: request.body.body,
         createAt: new Date().toISOString()
@@ -59,6 +62,9 @@ exports.deleteScore = (request, response) => {
             if (!doc.exists) {
                 return response.status(404).json({ error: 'Score not found' })
             }
+            if(doc.data().username !== request.user.username){
+                return response.status(403).json({error:"UnAuthorized"})
+           }
             return document.delete();
         })
         .then(() => {

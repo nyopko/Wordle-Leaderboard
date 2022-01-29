@@ -5,7 +5,7 @@ const auth = require('./util/auth');
 
 const {
     getAllScores,
-    getOneScore,
+    // getOneScore,
     postOneScore,
     deleteScore,
     editScore
@@ -22,15 +22,17 @@ const {
 // Users
 app.post('/login', loginUser);
 app.post('/signup', signUpUser);
-// app.post('/users/image', auth, uploadProfilePhoto);
 app.get('/user', auth, getUserDetail);
+app.post('/user', auth, updateUserDetails);
+// app.post('/users/image', auth, uploadProfilePhoto);
 
 
 // Scores 
 
-app.get('/todos', getAllScores);
+app.get('/todos', auth, getAllScores);
+// app.get('/todo/:todoId', auth, getOneTodo);
+app.post('/todo', auth, postOneScore);
+app.delete('/todo/:todoId', auth, deleteScore);
+app.put('/todo/:todoId', auth, editScore);
 
-app.post('/todo', postOneScore);
-app.delete('/todo/:todoId', deleteScore);
-app.put('/todo/:todoId', editScore);
 exports.api = functions.https.onRequest(app);
