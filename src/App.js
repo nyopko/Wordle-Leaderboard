@@ -12,7 +12,7 @@ import './App.css';
 /// Pages import
 
 import Home from "./Pages/home.js";
-import Profile from "./Pages/profile.js";
+import Login from "./Pages/login.js";
 import Leaderboard from "./Pages/leaderboard.js";
 
 
@@ -24,7 +24,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/leaderboard" component={Leaderboard} />
           </Switch>
         </div>
