@@ -14,7 +14,7 @@ const styles = ((theme) => ({
 
 class todo extends Component {
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
         return (
             <h1>yo</h1>
         )

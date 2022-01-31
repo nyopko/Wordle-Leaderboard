@@ -39,6 +39,7 @@ class App extends Component {
 	};
 
 	loadTodoPage = (event) => {
+        console.log("i hit");
 		this.setState({ render: false });
 	};
 
@@ -89,8 +90,9 @@ class App extends Component {
 	render() {
         return(
         <div>
-            <Account />
-            <button onClick={this.logoutHandler}>log out</button>
+            <button onClick={this.loadAccountPage}>Account</button>
+            <button onClick={this.loadTodoPage}>Score</button>
+            <div>{this.state.render ? <Account /> : <Todo />}</div>
         </div>
         )
     }
