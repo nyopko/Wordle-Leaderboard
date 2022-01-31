@@ -87,9 +87,12 @@ class App extends Component {
 	};
 
 	render() {
-        return(<div>
+        return(
+        <div>
             <Account />
-        </div>)
+            <button onClick={this.logoutHandler}>log out</button>
+        </div>
+        )
     }
 }
 
