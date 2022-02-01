@@ -194,6 +194,7 @@ class todo extends Component {
             this.setState({ open: false });
         };
 
+        // Loading Spinner
         if (this.state.uiLoading === true) {
             return (
                 <main className={classes.content}>
@@ -204,7 +205,6 @@ class todo extends Component {
         } else {
             return (
                 <div>
-
                     <Container>
                         <Row>
                             <Col md><Grid container spacing={2}>
@@ -276,33 +276,51 @@ class todo extends Component {
                             {/* Edit Score Form */}
 
                             <form className={classes.form} noValidate>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            id="todoDetails"
-                                            label="Body"
-                                            name="body"
-                                            autoComplete="todoDetails"
-                                            multiline
-                                            rows={25}
-                                            rowsMax={25}
-                                            helperText={errors.body}
-                                            error={errors.body ? true : false}
-                                            onChange={this.handleChange}
-                                            value={this.state.body}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            onChange={this.handleChange}
-                                            value={this.state.body}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </form>
+							<Container>
+                                <Row>
+								<Col sm>
+                                    <div className="edit-box">
+                                    <TextField
+										variant="outlined"
+										required
+										fullWidth
+										id="score-details"
+										label="Todo Details"
+										name="score"
+										autoComplete="score-details"
+										multiline
+										rows={25}
+										rowsMax={25}
+										helperText={errors.body}
+										error={errors.body ? true : false}
+										onChange={this.handleChange}
+										value={this.state.score}
+									/>
+                                    </div>
+								</Col>
+								<Col sm>
+                                <div className="edit-box">
+									<TextField
+										variant="outlined"
+										required
+										fullWidth
+										id="todoDetails"
+										label="Todo Details"
+										name="body"
+										autoComplete="todoDetails"
+										multiline
+										rows={25}
+										rowsMax={25}
+										helperText={errors.body}
+										error={errors.body ? true : false}
+										onChange={this.handleChange}
+										value={this.state.body}
+									/>
+                                    </div>
+								</Col>
+                                </Row>
+							</Container>
+						</form>
                         </Dialog>
 
                         {/* <Grid container spacing={2}>
