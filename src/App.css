@@ -1,3 +1,46 @@
-.input-field{
-  color: red;
+/* Home Page Styles */
+
+.home-header{
+  background-color: red;
+  height: 300px;
 }
+
+.main-content{
+  background-color: yellow;
+}
+
+.name-header{
+  text-align: right;
+}
+
+.home-button-group{
+  margin-left: 5%;
+  padding-top: 15%;
+}
+
+/* End Home Page */
+
+
+/* Score Page */
+
+.popout{
+  height: 200px;
+}
+.body-popout{
+  text-align: center;
+  margin-top: 27%;
+}
+.score-popout{
+  text-align: center;
+  margin-top: 27%;
+}
+
+#scores{
+  text-align: center;
+}
+
+#board{
+  text-align: center;
+}
+
+/* End Score Page */

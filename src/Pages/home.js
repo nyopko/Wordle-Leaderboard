@@ -24,76 +24,89 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { authMiddleWare } from '../util/auth'
 
+import { Container, Row, Col } from 'react-grid';
+
 
 const drawerWidth = 240;
 
 
 
 class App extends Component {
-	state = {
-		render: false
-	};
+    state = {
+        render: false
+    };
 
-	loadAccountPage = (event) => {
-		this.setState({ render: true });
-	};
+    loadAccountPage = (event) => {
+        this.setState({ render: true });
+    };
 
-	loadTodoPage = (event) => {
+    loadTodoPage = (event) => {
         console.log("i hit");
-		this.setState({ render: false });
-	};
+        this.setState({ render: false });
+    };
 
-	logoutHandler = (event) => {
-		localStorage.removeItem('AuthToken');
-		this.props.history.push('/login');
-	};
+    logoutHandler = (event) => {
+        localStorage.removeItem('AuthToken');
+        this.props.history.push('/login');
+    };
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		this.state = {
-			firstName: '',
-			lastName: '',
-			profilePicture: '',
-			uiLoading: true,
-			imageLoading: false
-		};
-	}
+        this.state = {
+            firstName: '',
+            lastName: '',
+            profilePicture: '',
+            uiLoading: true,
+            imageLoading: false
+        };
+    }
 
-	componentWillMount = () => {
-		authMiddleWare(this.props.history);
-		const authToken = localStorage.getItem('AuthToken');
-		axios.defaults.headers.common = { Authorization: `${authToken}` };
-		axios
-			.get('/user')
-			.then((response) => {
-				console.log(response.data);
-				this.setState({
-					firstName: response.data.userCredentials.firstName,
-					lastName: response.data.userCredentials.lastName,
-					email: response.data.userCredentials.email,
-					phoneNumber: response.data.userCredentials.phoneNumber,
-					country: response.data.userCredentials.country,
-					username: response.data.userCredentials.username,
-					uiLoading: false,
-				});
-			})
-			.catch((error) => {
-				if(error.response.status === 403) {
-					this.props.history.push('/login')
-				}
-				console.log(error);
-				this.setState({ errorMsg: 'Error in retrieving the data' });
-			});
-	};
+    componentWillMount = () => {
+        authMiddleWare(this.props.history);
+        const authToken = localStorage.getItem('AuthToken');
+        axios.defaults.headers.common = { Authorization: `${authToken}` };
+        axios
+            .get('/user')
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    firstName: response.data.userCredentials.firstName,
+                    lastName: response.data.userCredentials.lastName,
+                    email: response.data.userCredentials.email,
+                    phoneNumber: response.data.userCredentials.phoneNumber,
+                    country: response.data.userCredentials.country,
+                    username: response.data.userCredentials.username,
+                    uiLoading: false,
+                });
+            })
+            .catch((error) => {
+                if (error.response.status === 403) {
+                    this.props.history.push('/login')
+                }
+                console.log(error);
+                this.setState({ errorMsg: 'Error in retrieving the data' });
+            });
+    };
 
-	render() {
-        return(
-        <div>
-            <button onClick={this.loadAccountPage}>Account</button>
-            <button onClick={this.loadTodoPage}>Score</button>
-            <div>{this.state.render ? <Account /> : <Todo />}</div>
-        </div>
+    render() {
+        return (
+            <div className="home-header">
+                <Container>
+                    <Row>
+                        <Col md>
+                            <div className="home-button-group">
+                                <button onClick={this.loadAccountPage}>Account</button>
+                                <button onClick={this.loadTodoPage}>Score</button>
+                            </div>
+                        </Col>
+                        <Col md>
+                            <h1 className="name-header">{this.state.firstName}'s Scores</h1>
+                        </Col>
+                    </Row>
+                </Container>
+                <div className="main-content">{this.state.render ? <Account /> : <Todo />}</div>
+            </div>
         )
     }
 }
