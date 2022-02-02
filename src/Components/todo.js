@@ -47,6 +47,7 @@ class todo extends Component {
         this.state = {
             todos: '',
             score: '',
+            createAt: '',
             body: '',
             todoId: '',
             errors: [],
@@ -102,6 +103,7 @@ class todo extends Component {
     handleEditClickOpen(data) {
         this.setState({
             score: data.todo.score,
+            createAt: data.todo.createAt,
             body: data.todo.body,
             todoId: data.todo.todoId,
             buttonType: 'Edit',
@@ -112,6 +114,7 @@ class todo extends Component {
     handleViewOpen(data) {
         this.setState({
             score: data.todo.score,
+            createAt: data.todo.createAt,
             body: data.todo.body,
             viewOpen: true
         });
@@ -158,6 +161,7 @@ class todo extends Component {
             
             const userTodo = {
                 score: this.state.score,
+                createAt: this.state.createAt,
                 body: this.state.body
             };
             console.log(userTodo);
@@ -209,6 +213,8 @@ class todo extends Component {
         totalScore = scoreArr.reduce((partialSum, a) => partialSum + a, 0);
 
         console.log("total score", totalScore);
+        console.log("todos", this.state.todos);
+        console.log("createdAt", this.state.createAt)
         // Loading Spinner
         if (this.state.uiLoading === true) {
             return (
@@ -220,67 +226,39 @@ class todo extends Component {
         } else {
             return (
                 <div>
-
-                {/* <Container>
-                    <Row>
-                        <Col sm>
-                        Score: {todo.score}
-                        </Col>
-                        <Col sm>
-                        Board: {todo.body}
-                        </Col>
-                    </Row>
-                </Container> */}
-
-
-
                     <Container>
                         <Row>
-                            {/* <Col md><Grid container spacing={2}> */}
+                            <Col md><Grid container spacing={2}>
                                 {this.state.todos.map((todo) => (
-                                    <Container>
-                                    <Row>
-                                        <Col>
-                                    <div className="score-card">
-                                        <Col sm>
-                                        Score: {todo.score}
-                                        </Col>
-                                        <Col sm>
-                                        Board: {todo.body}
-                                        </Col>
-                                        </div>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                                    // <Grid item xs={12} sm={6}>
-                                    //     <Card className={classes.root} variant="outlined">
-                                    //         <CardContent>
-                                    //             <Typography variant="h5" component="h2">
-                                    //                 {todo.score}
-                                    //             </Typography>
-                                    //             <Typography className={classes.pos} color="textSecondary">
-                                    //                 {dayjs(todo.createdAt).fromNow()}
-                                    //             </Typography>
-                                    //             <Typography variant="body2" component="p">
-                                    //                 {`${todo.body.substring(0, 65)}`}
-                                    //             </Typography>
-                                    //         </CardContent>
-                                    //         <CardActions>
-                                    //             <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
-                                    //                 {' '}
-                                    //                 View{' '}
-                                    //             </Button>
-                                    //             <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
-                                    //                 Edit
-                                    //             </Button>
-                                    //             <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
-                                    //                 Delete
-                                    //             </Button>
-                                    //         </CardActions>
-                                    //     </Card>
-                                    // </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <Card className={classes.root} variant="outlined">
+                                            <CardContent>
+                                                <Typography variant="h5" component="h2">
+                                                    {todo.score}
+                                                </Typography>
+                                                <Typography className={classes.pos} color="textSecondary">
+                                                    {dayjs(todo.createdAt).fromNow()}
+                                                </Typography>
+                                                <Typography variant="body2" component="p">
+                                                    {`${todo.body.substring(0, 65)}`}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
+                                                    {' '}
+                                                    View{' '}
+                                                </Button>
+                                                <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
+                                                    Edit
+                                                </Button>
+                                                <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
+                                                    Delete
+                                                </Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Grid>
                                 ))}
-                            {/* </Grid></Col> */}
+                            </Grid></Col>
                             <Col md><IconButton
                                 className="add-button"
                                 color="primary"

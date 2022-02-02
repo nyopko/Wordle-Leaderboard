@@ -14,7 +14,7 @@ exports.getAllScores = (request, response) => {
                     username: request.user.username,
                     score: doc.data().score,
 					body: doc.data().body,
-					createdAt: doc.data().createdAt,
+					createdAt: doc.data().createAt,
 				});
 			});
 			return response.json(todos);
