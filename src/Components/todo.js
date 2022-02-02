@@ -234,7 +234,11 @@ class todo extends Component {
                                         <Card className={classes.root} variant="outlined">
                                             <CardContent>
                                                 <Typography variant="h5" component="h2">
-                                                    {todo.score}
+                                                { //Check if message failed
+        (Number(todo.score) < 6)
+          ? <div>Score: {todo.score}</div> 
+          : <div>Puzzle Failed</div> 
+      }
                                                 </Typography>
                                                 <Typography className={classes.pos} color="textSecondary">
                                                     {dayjs(todo.createdAt).fromNow()}
