@@ -44,16 +44,9 @@
 
 /* Home Page Styles */
 
-.home-header{
-  background-color: black;
-  height: 180px;
-  color: white;
-  /* margin-bottom: 10%; */
-}
-
 .main-content{
-  background-color: lightgrey;
-  margin-top: 0%;
+  background-color: #272729;
+  margin-top: -2.3%;
 }
 
 .name-header{
@@ -68,8 +61,8 @@
 .button-middle{
   margin-left: 20px;
   margin-right: 20px;
-  width: 132px;
-  height: 54px;
+  /* width: 132px;
+  height: 54px; */
 }
 
 /* End Home Page */
@@ -106,6 +99,11 @@
   margin-left: 1%;
 }
 
+.score-cards{
+  background-color: #818384!important;
+  color: black;
+}
+
 /* End Score Page */
 
 .edit-box{
@@ -134,18 +132,32 @@
 }
 
 .leaderboard-description-box{
-  margin-top: 5%;
-  color: black;
+  margin-top: 10%;
+  color: white;
   width: 100%;
   outline: 3px solid black;
+  background-color: #3a3a3c;
 }
 
 .leaderboard-main-content{
-  background-color: lightgray;
+  background-image: url('https://media.newyorker.com/photos/61e989e14c20ec321e63f851/16:9/w_1248,h_702,c_limit/wordle_big_animation2.gif');
   color: black;
   height: 100vh;
 }
 
 
 /* End Leaderboard */
+
+/* Navbar styles */
+
+#nav-bar{
+  background-color: #565758;
+  color: black!important;
+}
+
+#nav-title{
+  color: white;
+}
+
+/* End nav */
 

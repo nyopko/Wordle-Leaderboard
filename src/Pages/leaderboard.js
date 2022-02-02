@@ -25,6 +25,11 @@ class App extends Component {
         });
     };
 
+    logoutHandler = (event) => {
+        localStorage.removeItem('AuthToken');
+        this.props.history.push('/login');
+    };
+
     componentWillMount = () => {
         authMiddleWare(this.props.history);
         const authToken = localStorage.getItem('AuthToken');
@@ -42,7 +47,7 @@ class App extends Component {
             });
     };
 
-    
+
     render() {
 
         // Maths 
@@ -55,10 +60,10 @@ class App extends Component {
         let totalScore;
 
         for (let entry of this.state.todos) {
-            if(Number(entry.score) > 6){
+            if (Number(entry.score) > 6) {
                 scoreArr.push(7);
             }
-            else{
+            else {
                 scoreArr.push(Number(entry.score));
             }
         }
@@ -72,23 +77,23 @@ class App extends Component {
         let passed = 0;
         let failed = 0;
 
-        for(let entry of this.state.todos){
-            if(entry.score > 6){
+        for (let entry of this.state.todos) {
+            if (entry.score > 6) {
                 failed++
             }
-            else{
+            else {
                 passed++
             }
         }
 
         // Average Maths
 
-        let average = totalScore/scoreArr.length;
+        let average = totalScore / scoreArr.length;
         average = average.toFixed(1);
         console.log("average", average)
 
-        console.log("failed",failed);
-        console.log("passed",passed);
+        console.log("failed", failed);
+        console.log("passed", passed);
 
         console.log("total score", totalScore);
         console.log("todos", this.state.todos);
@@ -97,55 +102,66 @@ class App extends Component {
 
         return (
             <div className='leaderboard-main-content'>
-                <div className="leaderboard-header">
+                <nav id="nav-bar">
+                    <div class="nav-wrapper">
+                        <a id="nav-title" href="/" class="brand-logo">Wordle Stats</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="/">Account and Scores</a></li>
+                            <li><a onClick={this.logoutHandler}>Log Out</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+
+                {/* <div className="leaderboard-header">
+                    <Container>
+                        <Row>
+                            <Col md>
+                                <div className="home-button-group">
+                                    <a class="waves-effect waves-light btn-large button-middle" href="/">Scores</a>
+                                    <a class="waves-effect waves-light btn-large" href onClick={this.logoutHandler}>Log Out</a>
+                                </div>
+                            </Col>
+                            <Col md>
+                                <h1 className="name-header">Your Stats</h1>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div> */}
                 <Container>
-                    <Row>
-                        <Col md>
-                            <div className="home-button-group">
-                                <a class="waves-effect waves-light btn-large button-middle" href="/">Scores</a>
-                                <a class="waves-effect waves-light btn-large" href onClick={this.logoutHandler}>Log Out</a>
-                            </div>
-                        </Col>
-                        <Col md>
-                            <h1 className="name-header">Your Stats</h1>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-            <Container>
                     <div className="leaderboard-description-box">
-                <Row>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>Total Number of Words Guessed:</h4>
-                    </Col>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>{totalScore}</h4>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>Puzzled Completed:</h4>
-                    </Col>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>{passed}</h4>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>Puzzles Failed:</h4>
-                    </Col>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>{failed}</h4>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>Average Number of Guesses to Complete:</h4>
-                    </Col>
-                    <Col sm>
-                    <h4 className='leaderboard-main-text'>{average}</h4>
-                    </Col>
-                </Row>
+                        <Row>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>Total Number of Words Guessed:</h4>
+                            </Col>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>{totalScore}</h4>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>Puzzled Completed:</h4>
+                            </Col>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>{passed}</h4>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>Puzzles Failed:</h4>
+                            </Col>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>{failed}</h4>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>Average Number of Guesses to Complete:</h4>
+                            </Col>
+                            <Col sm>
+                                <h4 className='leaderboard-main-text'>{average}</h4>
+                            </Col>
+                        </Row>
                     </div>
                 </Container>
             </div>

@@ -220,7 +220,7 @@ class todo extends Component {
                                 <Col md><Grid container spacing={2}>
                                     {this.state.todos.map((todo) => (
                                         <Grid item xs={12} sm={6}>
-                                            <Card className={classes.root} variant="outlined">
+                                            <Card className="score-cards"variant="outlined">
                                                 <CardContent>
                                                     <Typography variant="h4" component="h2">
                                                         { //Calculate Fail or Not

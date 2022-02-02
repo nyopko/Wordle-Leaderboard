@@ -5,29 +5,9 @@ import axios from 'axios';
 import Account from '../Components/account.js';
 import Todo from '../Components/todo.js';
 
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import withStyles from '@material-ui/core/styles/withStyles';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import NotesIcon from '@material-ui/icons/Notes';
-import Avatar from '@material-ui/core/avatar';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 import { authMiddleWare } from '../util/auth'
 
 import { Container, Row, Col } from 'react-grid';
-
-
-const drawerWidth = 240;
 
 
 
@@ -91,21 +71,35 @@ class App extends Component {
     render() {
         return (
             <div className="home-header">
-                <Container>
+
+                <nav id="nav-bar">
+                    <div class="nav-wrapper">
+                        <a href="/" class="brand-logo">Wordle Stats</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a onClick={this.loadAccountPage}>Account</a></li>
+                            <li><a onClick={this.loadTodoPage}>Score</a></li>
+                            <li><a href="/leaderboard">Leaderboard</a></li>
+                            <li><a onClick={this.logoutHandler}>Log Out</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+
+                {/* <Container>
                     <Row>
                         <Col md>
                             <div className="home-button-group">
-                                <a class="waves-effect waves-light btn-large" onClick={this.loadAccountPage}>Account</a>
-                                <a class="waves-effect waves-light btn-large button-middle" onClick={this.loadTodoPage}>Score</a>
-                                <a class="waves-effect waves-light btn-large button-middle" href="/leaderboard">Leaderboard</a>
-                                <a class="waves-effect waves-light btn-large" onClick={this.logoutHandler}>Log Out</a>
+                                <a class="waves-effect waves-light btn" onClick={this.loadAccountPage}>Account</a>
+                                <a class="waves-effect waves-light btn button-middle" onClick={this.loadTodoPage}>Score</a>
+                                <a class="waves-effect waves-light btn button-middle" href="/leaderboard">Leaderboard</a>
+                                <a class="waves-effect waves-light btn" onClick={this.logoutHandler}>Log Out</a>
                             </div>
                         </Col>
                         <Col md>
                             <h1 className="name-header">{this.state.firstName}'s Scores</h1>
                         </Col>
                     </Row>
-                </Container>
+                </Container> */}
                 <div className="main-content">{this.state.render ? <Account /> : <Todo />}</div>
             </div>
         )
