@@ -50,11 +50,9 @@
   text-align: center;
 }
 
-.score-card{
+.score-log{
   background-color: aqua;
-  height: 100px;
-  width: 200px;
-
+  width: 100%;
 }
 
 /* End Score Page */
@@ -65,7 +63,10 @@
 }
 
 .add-button{
-  background-color: red;
-  margin-top: 1000%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 2%;
+  margin-right: 5%;
 }
 

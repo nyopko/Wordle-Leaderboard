@@ -158,7 +158,7 @@ class todo extends Component {
         const handleSubmit = (event) => {
             authMiddleWare(this.props.history);
             event.preventDefault();
-            
+
             const userTodo = {
                 score: this.state.score,
                 createAt: this.state.createAt,
@@ -205,7 +205,7 @@ class todo extends Component {
         let scoreArr = [];
         let totalScore;
 
-        for(let entry of this.state.todos){
+        for (let entry of this.state.todos) {
             scoreArr.push(Number(entry.score));
         }
         // console.log("scorearr", scoreArr);
@@ -226,54 +226,59 @@ class todo extends Component {
         } else {
             return (
                 <div>
-                    <Container>
-                        <Row>
-                            <Col md><Grid container spacing={2}>
-                                {this.state.todos.map((todo) => (
-                                    <Grid item xs={12} sm={6}>
-                                        <Card className={classes.root} variant="outlined">
-                                            <CardContent>
-                                                <Typography variant="h5" component="h2">
-                                                { //Check if message failed
-        (Number(todo.score) < 6)
-          ? <div>Score: {todo.score}</div> 
-          : <div>Puzzle Failed</div> 
-      }
-                                                </Typography>
-                                                <Typography className={classes.pos} color="textSecondary">
-                                                    {dayjs(todo.createdAt).fromNow()}
-                                                </Typography>
-                                                <Typography variant="body2" component="p">
-                                                    {`${todo.body.substring(0, 65)}`}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
-                                                    {' '}
-                                                    View{' '}
-                                                </Button>
-                                                <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
-                                                    Edit
-                                                </Button>
-                                                <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
-                                                    Delete
-                                                </Button>
-                                            </CardActions>
-                                        </Card>
-                                    </Grid>
-                                ))}
-                            </Grid></Col>
-                            <Col md><IconButton
-                                className="add-button"
-                                color="primary"
-                                aria-label="Add Todo"
-                                onClick={handleClickOpen}
-                            >
-                                <AddCircleIcon style={{ fontSize: 60 }} />
-                            </IconButton></Col>
-                        </Row>
-                    </Container>
+                    <div className="score-log">
+                        <h3>Score Log</h3>
+                        <Container>
+                            <Row>
+                                <Col md><Grid container spacing={2}>
+                                    {this.state.todos.map((todo) => (
+                                        <Grid item xs={12} sm={6}>
+                                            <Card className={classes.root} variant="outlined">
+                                                <CardContent>
+                                                    <Typography variant="h5" component="h2">
+                                                        { //Calculate Fail or Not
+                                                            (Number(todo.score) < 7)
+                                                                ? <div>Score: {todo.score}</div>
+                                                                : <div>Puzzle Failed</div>
+                                                        }
+                                                    </Typography>
+                                                    <Typography className={classes.pos} color="textSecondary">
+                                                        {dayjs(todo.createdAt).fromNow()}
+                                                    </Typography>
+                                                    <Typography variant="body2" component="p">
+                                                        {`${todo.body.substring(0, 65)}`}
+                                                    </Typography>
+                                                </CardContent>
+                                                <CardActions>
+                                                    <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
+                                                        Details
+                                                    </Button>
+                                                    <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
+                                                        Edit
+                                                    </Button>
+                                                    <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
+                                                        Delete
+                                                    </Button>
+                                                </CardActions>
+                                            </Card>
+                                        </Grid>
+                                    ))}
+                                </Grid></Col>
+                            </Row>
+                        </Container>
+                    </div>
 
+                    {/* Button Here */}
+                    <div className="add-button">
+                    <IconButton
+                        color="primary"
+                        aria-label="Add Score"
+                        onClick={handleClickOpen}
+                    >
+                        <AddCircleIcon style={{ fontSize: 60 }} />
+                    </IconButton>
+                    </div>
+                    {/* End Button */}
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
 
@@ -301,51 +306,51 @@ class todo extends Component {
                             {/* Edit Score Form */}
 
                             <form className={classes.form} noValidate>
-							<Container>
-                                <Row>
-								<Col sm>
-                                    <div className="edit-box">
-                                    <TextField
-										variant="outlined"
-										required
-										fullWidth
-										id="score-details"
-										label="Score Details"
-										name="score"
-										autoComplete="score-details"
-										multiline
-										minRows={25}
-										maxRows={25}
-										helperText={errors.body}
-										error={errors.body ? true : false}
-										onChange={this.handleChange}
-										value={this.state.score}
-									/>
-                                    </div>
-								</Col>
-								<Col sm>
-                                <div className="edit-box">
-									<TextField
-										variant="outlined"
-										required
-										fullWidth
-										id="body-details"
-										label="body"
-										name="body"
-                                        autoComplete="body-details"
-										multiline
-										minRows={25}
-										maxRows={25}
-										helperText={errors.body}
-										error={errors.body ? true : false}
-										onChange={this.handleChange}
-										value={this.state.body}
-									/>
-                                    </div>
-								</Col>
-                                </Row>
-							</Container>
-						</form>
+                                <Container>
+                                    <Row>
+                                        <Col sm>
+                                            <div className="edit-box">
+                                                <TextField
+                                                    variant="outlined"
+                                                    required
+                                                    fullWidth
+                                                    id="score-details"
+                                                    label="Score Details"
+                                                    name="score"
+                                                    autoComplete="score-details"
+                                                    multiline
+                                                    minRows={25}
+                                                    maxRows={25}
+                                                    helperText={errors.body}
+                                                    error={errors.body ? true : false}
+                                                    onChange={this.handleChange}
+                                                    value={this.state.score}
+                                                />
+                                            </div>
+                                        </Col>
+                                        <Col sm>
+                                            <div className="edit-box">
+                                                <TextField
+                                                    variant="outlined"
+                                                    required
+                                                    fullWidth
+                                                    id="body-details"
+                                                    label="body"
+                                                    name="body"
+                                                    autoComplete="body-details"
+                                                    multiline
+                                                    minRows={25}
+                                                    maxRows={25}
+                                                    helperText={errors.body}
+                                                    error={errors.body ? true : false}
+                                                    onChange={this.handleChange}
+                                                    value={this.state.body}
+                                                />
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </form>
                         </Dialog>
 
                         {/* <Grid container spacing={2}>
@@ -389,44 +394,44 @@ class todo extends Component {
                             fullWidth
                         >
                             <div className="popout">
-                            <Container>
-                                <Row>
-                                    <Col md>
-                                        <div className="body-popout">
-                                            <h6><b>Board</b></h6>
-                                            <TextField
-                                                id="board"
-                                                name="body"
-                                                multiline
-                                                readonly
-                                                minRows={1}
-                                                maxRows={25}
-                                                value={this.state.body}
-                                                InputProps={{
-                                                    disableUnderline: true
-                                                }}
-                                            />
-                                        </div>
-                                    </Col>
-                                    <Col md>
-                                        <div className="score-popout">
-                                            <h6><b>Score</b></h6>
-                                            <TextField
-                                                id="scores"
-                                                name="Score"
-                                                multiline
-                                                readonly
-                                                minRows={1}
-                                                maxRows={25}
-                                                value={this.state.score}
-                                                InputProps={{
-                                                    disableUnderline: true
-                                                }}
-                                            />
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </Container>
+                                <Container>
+                                    <Row>
+                                        <Col md>
+                                            <div className="body-popout">
+                                                <h6><b>Board</b></h6>
+                                                <TextField
+                                                    id="board"
+                                                    name="body"
+                                                    multiline
+                                                    readonly
+                                                    minRows={1}
+                                                    maxRows={25}
+                                                    value={this.state.body}
+                                                    InputProps={{
+                                                        disableUnderline: true
+                                                    }}
+                                                />
+                                            </div>
+                                        </Col>
+                                        <Col md>
+                                            <div className="score-popout">
+                                                <h6><b>Score</b></h6>
+                                                <TextField
+                                                    id="scores"
+                                                    name="Score"
+                                                    multiline
+                                                    readonly
+                                                    minRows={1}
+                                                    maxRows={25}
+                                                    value={this.state.score}
+                                                    InputProps={{
+                                                        disableUnderline: true
+                                                    }}
+                                                />
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Container>
                             </div>
                         </Dialog>
                     </main>
