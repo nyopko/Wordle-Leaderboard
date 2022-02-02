@@ -97,7 +97,7 @@ class App extends Component {
                             <div className="home-button-group">
                                 <a class="waves-effect waves-light btn-large" onClick={this.loadAccountPage}>Account</a>
                                 <a class="waves-effect waves-light btn-large button-middle" onClick={this.loadTodoPage}>Score</a>
-                                <a class="waves-effect waves-light btn-large button-middle" href="/leaderboard">Score</a>
+                                <a class="waves-effect waves-light btn-large button-middle" href="/leaderboard">Leaderboard</a>
                                 <a class="waves-effect waves-light btn-large" onClick={this.logoutHandler}>Log Out</a>
                             </div>
                         </Col>

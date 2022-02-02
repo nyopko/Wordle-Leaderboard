@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { authMiddleWare } from '../util/auth';
 
-
+import { Container, Row, Col } from 'react-grid';
 
 class App extends Component {
     constructor(props) {
@@ -33,50 +33,62 @@ class App extends Component {
             .get('/todos')
             .then((response) => {
                 this.setState({
-                    scores: response.data,
-                    firstName: response.data.userCredentials.firstName,
+                    todos: response.data,
                     uiLoading: false
                 });
             })
             .catch((err) => {
                 console.log(err);
             });
-            axios
-            .get('/user')
-            .then((response) => {
-                console.log(response.data);
-                this.setState({
-                    firstName: response.data.userCredentials.firstName,
-                    lastName: response.data.userCredentials.lastName,
-                    email: response.data.userCredentials.email,
-                    phoneNumber: response.data.userCredentials.phoneNumber,
-                    country: response.data.userCredentials.country,
-                    username: response.data.userCredentials.username,
-                    uiLoading: false,
-                });
-            })
-            .catch((error) => {
-                if (error.response.status === 403) {
-                    this.props.history.push('/login')
-                }
-                console.log(error);
-                this.setState({ errorMsg: 'Error in retrieving the data' });
-            });
     };
 
     
     render() {
+
+        // Maths 
+
         console.log("todos", this.state.todos);
+
+        // Total Score Maths
 
         let scoreArr = [];
         let totalScore;
 
         for (let entry of this.state.todos) {
-            scoreArr.push(Number(entry.score));
+            if(Number(entry.score) > 6){
+                scoreArr.push(7);
+            }
+            else{
+                scoreArr.push(Number(entry.score));
+            }
         }
         // console.log("scorearr", scoreArr);
         // const reducer = (previousValue, currentValue) => previousValue + currentValue;
         totalScore = scoreArr.reduce((partialSum, a) => partialSum + a, 0);
+
+
+        // Number Correct Maths
+
+        let passed = 0;
+        let failed = 0;
+
+        for(let entry of this.state.todos){
+            if(entry.score > 6){
+                failed++
+            }
+            else{
+                passed++
+            }
+        }
+
+        // Average Maths
+
+        let average = totalScore/scoreArr.length;
+        average = average.toFixed(1);
+        console.log("average", average)
+
+        console.log("failed",failed);
+        console.log("passed",passed);
 
         console.log("total score", totalScore);
         console.log("todos", this.state.todos);
@@ -85,7 +97,57 @@ class App extends Component {
 
         return (
             <div>
-            <h1>{this.state.firstName}</h1>
+                <div className="leaderboard-header">
+                <Container>
+                    <Row>
+                        <Col md>
+                            <div className="home-button-group">
+                                <a class="waves-effect waves-light btn-large button-middle" href="/">Scores</a>
+                                <a class="waves-effect waves-light btn-large" href onClick={this.logoutHandler}>Log Out</a>
+                            </div>
+                        </Col>
+                        <Col md>
+                            <h1 className="name-header">Your Stats</h1>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+            <Container>
+                    <div className="leaderboard-description-box">
+                <Row>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>Total Number of Guesses Made:</h4>
+                    </Col>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>{totalScore}</h4>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>Puzzled Completed:</h4>
+                    </Col>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>{passed}</h4>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>Puzzles Failed:</h4>
+                    </Col>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>{failed}</h4>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>Average Number of Guesses to Complete:</h4>
+                    </Col>
+                    <Col sm>
+                    <h4 className='leaderboard-main-text'>{average}</h4>
+                    </Col>
+                </Row>
+                    </div>
+                </Container>
             </div>
         );
     }

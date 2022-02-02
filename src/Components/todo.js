@@ -202,19 +202,6 @@ class todo extends Component {
 
         // console.log("todos", this.state.todos);
 
-        let scoreArr = [];
-        let totalScore;
-
-        for (let entry of this.state.todos) {
-            scoreArr.push(Number(entry.score));
-        }
-        // console.log("scorearr", scoreArr);
-        // const reducer = (previousValue, currentValue) => previousValue + currentValue;
-        totalScore = scoreArr.reduce((partialSum, a) => partialSum + a, 0);
-
-        console.log("total score", totalScore);
-        console.log("todos", this.state.todos);
-        console.log("createdAt", this.state.createAt)
         // Loading Spinner
         if (this.state.uiLoading === true) {
             return (

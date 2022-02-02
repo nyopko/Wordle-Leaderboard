@@ -70,3 +70,24 @@
   margin-right: 5%;
 }
 
+/* Leaderboard Page here */
+
+.leaderboard-header{
+  background-color: red;
+  height: 150px;
+}
+
+.leaderboard-main-text{
+  text-align: center;
+}
+
+.leaderboard-description-box{
+  margin-top: 5%;
+  color: blue;
+  width: 100%;
+  outline: 3px solid black;
+}
+
+
+/* End Leaderboard */
+
