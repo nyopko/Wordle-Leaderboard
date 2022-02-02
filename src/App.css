@@ -1,3 +1,47 @@
+/* Login page */
+
+.login-page{
+  background-image: url('https://media.newyorker.com/photos/61e989e14c20ec321e63f851/16:9/w_1248,h_702,c_limit/wordle_big_animation2.gif');
+  height: 100vh;
+}
+
+.login-container{
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 10%;
+  background-color: #3a3a3c;
+  padding-bottom: 4%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 25px;
+}
+
+.login-header{
+  text-align: center;
+  color: white;
+}
+
+#email, #password{
+  border-bottom: none;
+  background-color: #818384;
+  color: black;
+}
+
+.submit-button{
+  background-color: lightgray!important;
+  color: black!important;
+  margin-top: 2%!important;
+}
+
+.form-label{
+  color: white;
+  margin-bottom: -1%;
+}
+
+
+/* End Login Page */
+
+
 /* Home Page Styles */
 
 .home-header{

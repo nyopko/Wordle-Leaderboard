@@ -71,17 +71,18 @@ class login extends Component {
         // const { classes } = this.props;
         const { errors, loading } = this.state;
         return (
+            <div className='login-page'>
             <Container>
                 <Row>
-                    <Col md><h1>Column 1</h1></Col>
+                    <div className='login-container'>
+                        <h2 className='login-header'>Wordle Stats Login</h2>
                     <Col md>
+                        <p className='form-label'>Email</p>
                     <TextField
-							variant="outlined"
 							margin="normal"
 							required
 							fullWidth
 							id="email"
-							label="Email Address"
 							name="email"
 							autoComplete="email"
 							autoFocus
@@ -89,13 +90,12 @@ class login extends Component {
 							error={errors.email ? true : false}
 							onChange={this.handleChange}
 						/>
+                        <p className='form-label'>Password</p>
 						<TextField
-							variant="outlined"
 							margin="normal"
 							required
 							fullWidth
 							name="password"
-							label="Password"
 							type="password"
 							id="password"
 							autoComplete="current-password"
@@ -115,9 +115,10 @@ class login extends Component {
 							Sign In
 						</Button>
                     </Col>
-                    <Col md><h1>Column 3</h1></Col>
+                    </div>
                 </Row>
             </Container>
+            </div>
         );
     }
 }
