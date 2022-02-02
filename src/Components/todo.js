@@ -222,18 +222,19 @@ class todo extends Component {
                                         <Grid item xs={12} sm={6}>
                                             <Card className={classes.root} variant="outlined">
                                                 <CardContent>
-                                                    <Typography variant="h5" component="h2">
+                                                    <Typography variant="h4" component="h2">
                                                         { //Calculate Fail or Not
                                                             (Number(todo.score) < 7)
                                                                 ? <div>Score: {todo.score}</div>
                                                                 : <div>Puzzle Failed</div>
                                                         }
                                                     </Typography>
+                                                    <hr></hr>
+                                                    <Typography variant="h6" component="h6">
+                                                        <b>Word: </b> {todo.body}
+                                                    </Typography>
                                                     <Typography className={classes.pos} color="textSecondary">
                                                         {dayjs(todo.createdAt).fromNow()}
-                                                    </Typography>
-                                                    <Typography variant="body2" component="p">
-                                                        {`${todo.body.substring(0, 65)}`}
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
@@ -268,7 +269,6 @@ class todo extends Component {
                     {/* End Button */}
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
-
                         <Dialog fullScreen open={open} onClose={handleClose}>
                             <AppBar className={classes.appBar}>
                                 <Toolbar>

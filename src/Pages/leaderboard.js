@@ -116,7 +116,7 @@ class App extends Component {
                     <div className="leaderboard-description-box">
                 <Row>
                     <Col sm>
-                    <h4 className='leaderboard-main-text'>Total Number of Guesses Made:</h4>
+                    <h4 className='leaderboard-main-text'>Total Number of Words Guessed:</h4>
                     </Col>
                     <Col sm>
                     <h4 className='leaderboard-main-text'>{totalScore}</h4>
