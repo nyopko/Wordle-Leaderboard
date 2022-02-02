@@ -36,9 +36,9 @@ const styles = ((theme) => ({
 })
 );
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+// const Transition = React.forwardRef(function Transition(props, ref) {
+//     return <Slide direction="up" ref={ref} {...props} />;
+// });
 
 class todo extends Component {
     constructor(props) {
@@ -118,25 +118,25 @@ class todo extends Component {
     }
 
     render() {
-        const DialogTitle = withStyles(styles)((props) => {
-            const { children, classes, onClose, ...other } = props;
-            return (
-                <MuiDialogTitle disableTypography className={classes.root} {...other}>
-                    <Typography variant="h6">{children}</Typography>
-                    {onClose ? (
-                        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                            <CloseIcon />
-                        </IconButton>
-                    ) : null}
-                </MuiDialogTitle>
-            );
-        });
+        // const DialogTitle = withStyles(styles)((props) => {
+        //     const { children, classes, onClose, ...other } = props;
+        //     // return (
+        //     //     <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        //     //         <Typography variant="h6">{children}</Typography>
+        //     //         {onClose ? (
+        //     //             <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        //     //                 <CloseIcon />
+        //     //             </IconButton>
+        //     //         ) : null}
+        //     //     </MuiDialogTitle>
+        //     // );
+        // });
 
-        const DialogContent = withStyles((theme) => ({
-            viewRoot: {
-                padding: theme.spacing(2)
-            }
-        }))(MuiDialogContent);
+        // const DialogContent = withStyles((theme) => ({
+        //     viewRoot: {
+        //         padding: theme.spacing(2)
+        //     }
+        // }))(MuiDialogContent);
 
         dayjs.extend(relativeTime);
         const { classes } = this.props;
@@ -155,10 +155,12 @@ class todo extends Component {
         const handleSubmit = (event) => {
             authMiddleWare(this.props.history);
             event.preventDefault();
+            
             const userTodo = {
                 score: this.state.score,
                 body: this.state.body
             };
+            console.log(userTodo);
             let options = {};
             if (this.state.buttonType === 'Edit') {
                 options = {
@@ -194,6 +196,19 @@ class todo extends Component {
             this.setState({ open: false });
         };
 
+        // console.log("todos", this.state.todos);
+
+        let scoreArr = [];
+        let totalScore;
+
+        for(let entry of this.state.todos){
+            scoreArr.push(Number(entry.score));
+        }
+        // console.log("scorearr", scoreArr);
+        // const reducer = (previousValue, currentValue) => previousValue + currentValue;
+        totalScore = scoreArr.reduce((partialSum, a) => partialSum + a, 0);
+
+        console.log("total score", totalScore);
         // Loading Spinner
         if (this.state.uiLoading === true) {
             return (
@@ -205,41 +220,69 @@ class todo extends Component {
         } else {
             return (
                 <div>
+
+                {/* <Container>
+                    <Row>
+                        <Col sm>
+                        Score: {todo.score}
+                        </Col>
+                        <Col sm>
+                        Board: {todo.body}
+                        </Col>
+                    </Row>
+                </Container> */}
+
+
+
                     <Container>
                         <Row>
-                            <Col md><Grid container spacing={2}>
+                            {/* <Col md><Grid container spacing={2}> */}
                                 {this.state.todos.map((todo) => (
-                                    <Grid item xs={12} sm={6}>
-                                        <Card className={classes.root} variant="outlined">
-                                            <CardContent>
-                                                <Typography variant="h5" component="h2">
-                                                    {todo.score}
-                                                </Typography>
-                                                <Typography className={classes.pos} color="textSecondary">
-                                                    {dayjs(todo.createdAt).fromNow()}
-                                                </Typography>
-                                                <Typography variant="body2" component="p">
-                                                    {`${todo.body.substring(0, 65)}`}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
-                                                    {' '}
-                                                    View{' '}
-                                                </Button>
-                                                <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
-                                                    Edit
-                                                </Button>
-                                                <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
-                                                    Delete
-                                                </Button>
-                                            </CardActions>
-                                        </Card>
-                                    </Grid>
+                                    <Container>
+                                    <Row>
+                                        <Col>
+                                    <div className="score-card">
+                                        <Col sm>
+                                        Score: {todo.score}
+                                        </Col>
+                                        <Col sm>
+                                        Board: {todo.body}
+                                        </Col>
+                                        </div>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                                    // <Grid item xs={12} sm={6}>
+                                    //     <Card className={classes.root} variant="outlined">
+                                    //         <CardContent>
+                                    //             <Typography variant="h5" component="h2">
+                                    //                 {todo.score}
+                                    //             </Typography>
+                                    //             <Typography className={classes.pos} color="textSecondary">
+                                    //                 {dayjs(todo.createdAt).fromNow()}
+                                    //             </Typography>
+                                    //             <Typography variant="body2" component="p">
+                                    //                 {`${todo.body.substring(0, 65)}`}
+                                    //             </Typography>
+                                    //         </CardContent>
+                                    //         <CardActions>
+                                    //             <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
+                                    //                 {' '}
+                                    //                 View{' '}
+                                    //             </Button>
+                                    //             <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
+                                    //                 Edit
+                                    //             </Button>
+                                    //             <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
+                                    //                 Delete
+                                    //             </Button>
+                                    //         </CardActions>
+                                    //     </Card>
+                                    // </Grid>
                                 ))}
-                            </Grid></Col>
+                            {/* </Grid></Col> */}
                             <Col md><IconButton
-                                className={classes.floatingButton}
+                                className="add-button"
                                 color="primary"
                                 aria-label="Add Todo"
                                 onClick={handleClickOpen}
@@ -252,7 +295,7 @@ class todo extends Component {
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
 
-                        <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+                        <Dialog fullScreen open={open} onClose={handleClose}>
                             <AppBar className={classes.appBar}>
                                 <Toolbar>
                                     <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
@@ -285,12 +328,12 @@ class todo extends Component {
 										required
 										fullWidth
 										id="score-details"
-										label="Todo Details"
+										label="Score Details"
 										name="score"
 										autoComplete="score-details"
 										multiline
-										rows={25}
-										rowsMax={25}
+										minRows={25}
+										maxRows={25}
 										helperText={errors.body}
 										error={errors.body ? true : false}
 										onChange={this.handleChange}
@@ -304,13 +347,13 @@ class todo extends Component {
 										variant="outlined"
 										required
 										fullWidth
-										id="todoDetails"
-										label="Todo Details"
+										id="body-details"
+										label="body"
 										name="body"
-										autoComplete="todoDetails"
+                                        autoComplete="body-details"
 										multiline
-										rows={25}
-										rowsMax={25}
+										minRows={25}
+										maxRows={25}
 										helperText={errors.body}
 										error={errors.body ? true : false}
 										onChange={this.handleChange}
@@ -374,8 +417,8 @@ class todo extends Component {
                                                 name="body"
                                                 multiline
                                                 readonly
-                                                rows={1}
-                                                rowsMax={25}
+                                                minRows={1}
+                                                maxRows={25}
                                                 value={this.state.body}
                                                 InputProps={{
                                                     disableUnderline: true
@@ -391,8 +434,8 @@ class todo extends Component {
                                                 name="Score"
                                                 multiline
                                                 readonly
-                                                rows={1}
-                                                rowsMax={25}
+                                                minRows={1}
+                                                maxRows={25}
                                                 value={this.state.score}
                                                 InputProps={{
                                                     disableUnderline: true

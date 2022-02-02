@@ -15,7 +15,14 @@
 
 .home-button-group{
   margin-left: 5%;
-  padding-top: 15%;
+  padding-top: 8%;
+}
+
+.button-middle{
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 132px;
+  height: 54px;
 }
 
 /* End Home Page */
@@ -43,9 +50,22 @@
   text-align: center;
 }
 
+.score-card{
+  background-color: aqua;
+  height: 100px;
+  width: 200px;
+
+}
+
 /* End Score Page */
 
 .edit-box{
   background-color: red;
   margin-top: 20%;
 }
+
+.add-button{
+  background-color: red;
+  margin-top: 1000%;
+}
+

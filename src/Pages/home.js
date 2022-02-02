@@ -41,7 +41,6 @@ class App extends Component {
     };
 
     loadTodoPage = (event) => {
-        console.log("i hit");
         this.setState({ render: false });
     };
 
@@ -96,8 +95,9 @@ class App extends Component {
                     <Row>
                         <Col md>
                             <div className="home-button-group">
-                                <button onClick={this.loadAccountPage}>Account</button>
-                                <button onClick={this.loadTodoPage}>Score</button>
+                                <a class="waves-effect waves-light btn-large" onClick={this.loadAccountPage}>Account</a>
+                                <a class="waves-effect waves-light btn-large button-middle" onClick={this.loadTodoPage}>Score</a>
+                                <a class="waves-effect waves-light btn-large">Log Out</a>
                             </div>
                         </Col>
                         <Col md>
