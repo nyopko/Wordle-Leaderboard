@@ -214,7 +214,7 @@ class todo extends Component {
             return (
                 <div>
                     <div className="score-log">
-                        <h3>Score Log</h3>
+                        <h3 className='score-log-header'>Score Log</h3>
                         <Container>
                             <Row>
                                 <Col md><Grid container spacing={2}>

@@ -96,7 +96,7 @@ class App extends Component {
 
 
         return (
-            <div>
+            <div className='leaderboard-main-content'>
                 <div className="leaderboard-header">
                 <Container>
                     <Row>
