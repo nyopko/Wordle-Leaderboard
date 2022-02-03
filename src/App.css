@@ -73,22 +73,27 @@
 
 .popout{
   height: 200px;
+  background-color: #3a3a3c;
 }
 .body-popout{
+  color: white;
   text-align: center;
   margin-top: 27%;
 }
 .score-popout{
+  color: white;
   text-align: center;
   margin-top: 27%;
 }
 
 #scores{
   text-align: center;
+  color: white;
 }
 
 #board{
   text-align: center;
+  color: white;
 }
 
 .score-log{
@@ -112,6 +117,12 @@
   color: white;
 }
 
+.button-links{
+  margin-left: 3%;
+  color: white!important;
+  background: none!important;
+}
+
 .score-text{
   color: white;
   margin-top: -1%;
@@ -125,9 +136,39 @@
 
 /* End Score Page */
 
-.edit-box{
-  background-color: red;
-  margin-top: 20%;
+.score-forms{
+  background-color: #818384;
+  width: 100vh;
+  margin-top: 15%;
+  margin-left: 25%;
+  padding: 70px;
+  height: 40vh;
+  border-radius: 25px;
+}
+
+#score-details-edit, #body-details-edit{
+  width: 200px;
+  margin-bottom: -1%;
+  background-color: white;
+}
+
+.add-score-button{
+  margin-top: 8%!important;
+  margin-left: 80%!important;
+}
+
+.edit-score-popout{
+  background-color: #3a3a3c;
+  height: 100vh;
+}
+
+.app-bar{
+  background-color: #818384!important;
+}
+
+.app-bar-title{
+  margin-left: 1%!important;
+  text-align: center!important;
 }
 
 .add-button{

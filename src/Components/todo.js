@@ -246,13 +246,13 @@ class todo extends Component {
                                                     </Container>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
+                                                    <Button size="small" class="button-links" onClick={() => this.handleViewOpen({ todo })}>
                                                         Details
                                                     </Button>
-                                                    <Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
+                                                    <Button size="small" class="button-links" onClick={() => this.handleEditClickOpen({ todo })}>
                                                         Edit
                                                     </Button>
-                                                    <Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
+                                                    <Button size="small" class="button-links" onClick={() => this.deleteTodoHandler({ todo })}>
                                                         Delete
                                                     </Button>
                                                 </CardActions>
@@ -278,44 +278,33 @@ class todo extends Component {
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
                         <Dialog fullScreen open={open} onClose={handleClose}>
-                            <AppBar className={classes.appBar}>
+                            <AppBar className="app-bar">
                                 <Toolbar>
                                     <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
                                         <CloseIcon />
                                     </IconButton>
-                                    <Typography variant="h6" className={classes.title}>
-                                        {this.state.buttonType === 'Edit' ? 'Edit Todo' : 'Create a new Todo'}
-                                    </Typography>
-                                    <Button
-                                        autoFocus
-                                        color="inherit"
-                                        onClick={handleSubmit}
-                                        className={classes.submitButton}
-                                    >
-                                        {this.state.buttonType === 'Edit' ? 'Save' : 'Submit'}
-                                    </Button>
+                                    <h6 className="app-bar-title">
+                                        {this.state.buttonType === 'Edit' ? 'Edit Game' : 'Enter New Game Details'}
+                                    </h6>
                                 </Toolbar>
                             </AppBar>
 
 
                             {/* Edit Score Form */}
-
-                            <form className={classes.form} noValidate>
+                            <div className='edit-score-popout'>
+                            <div className="score-forms">                              
+                            <form noValidate>
                                 <Container>
                                     <Row>
                                         <Col sm>
                                             <div className="edit-box">
+                                            <p className='form-label'>Score</p>
                                                 <TextField
                                                     variant="outlined"
                                                     required
-                                                    fullWidth
-                                                    id="score-details"
-                                                    label="Score Details"
+                                                    id="score-details-edit"
                                                     name="score"
                                                     autoComplete="score-details"
-                                                    multiline
-                                                    minRows={25}
-                                                    maxRows={25}
                                                     helperText={errors.body}
                                                     error={errors.body ? true : false}
                                                     onChange={this.handleChange}
@@ -325,17 +314,13 @@ class todo extends Component {
                                         </Col>
                                         <Col sm>
                                             <div className="edit-box">
+                                            <p className='form-label'>Word</p>
                                                 <TextField
                                                     variant="outlined"
                                                     required
-                                                    fullWidth
-                                                    id="body-details"
-                                                    label="body"
+                                                    id="body-details-edit"
                                                     name="body"
                                                     autoComplete="body-details"
-                                                    multiline
-                                                    minRows={25}
-                                                    maxRows={25}
                                                     helperText={errors.body}
                                                     error={errors.body ? true : false}
                                                     onChange={this.handleChange}
@@ -345,40 +330,18 @@ class todo extends Component {
                                         </Col>
                                     </Row>
                                 </Container>
+                                <Button
+                                        autoFocus
+                                        color="inherit"
+                                        onClick={handleSubmit}
+                                        className="add-score-button"
+                                    >
+                                        {this.state.buttonType === 'Edit' ? 'Save' : 'Submit'}
+                                    </Button>
                             </form>
+                            </div>
+                            </div> 
                         </Dialog>
-
-                        {/* <Grid container spacing={2}>
-						{this.state.todos.map((todo) => (
-							<Grid item xs={12} sm={6}>
-								<Card className={classes.root} variant="outlined">
-									<CardContent>
-										<Typography variant="h5" component="h2">
-											{todo.score}
-										</Typography>
-										<Typography className={classes.pos} color="textSecondary">
-											{dayjs(todo.createdAt).fromNow()}
-										</Typography>
-										<Typography variant="body2" component="p">
-											{`${todo.body.substring(0, 65)}`}
-										</Typography>
-									</CardContent>
-									<CardActions>
-										<Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
-											{' '}
-											View{' '}
-										</Button>
-										<Button size="small" color="primary" onClick={() => this.handleEditClickOpen({ todo })}>
-											Edit
-										</Button>
-										<Button size="small" color="primary" onClick={() => this.deleteTodoHandler({ todo })}>
-											Delete
-										</Button>
-									</CardActions>
-								</Card>
-							</Grid>
-						))}
-					</Grid> */}
 
                         {/* View Score Pop-Out */}
 
@@ -393,14 +356,12 @@ class todo extends Component {
                                     <Row>
                                         <Col md>
                                             <div className="body-popout">
-                                                <h6><b>Board</b></h6>
+                                                <h6><b>Word</b></h6>
                                                 <TextField
                                                     id="board"
                                                     name="body"
                                                     multiline
                                                     readonly
-                                                    minRows={1}
-                                                    maxRows={25}
                                                     value={this.state.body}
                                                     InputProps={{
                                                         disableUnderline: true
