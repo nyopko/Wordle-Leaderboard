@@ -3,6 +3,10 @@ const app = require('express')();
 
 const auth = require('./util/auth');
 
+// const cors = require('cors');
+// app.use(cors());
+// app.options('*', cors())
+
 const {
     getAllScores,
     // getOneScore,
