@@ -102,6 +102,8 @@ class account extends Component {
 		const formRequest = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
+            email: this.state.email,
+            username: this.state.username,
 		};
 		axios
 			.post('/user', formRequest)
@@ -121,16 +123,19 @@ class account extends Component {
 
 	render() {
 		return(
+            <div className="account-main">
             <div className='account-main-content'>
-            <h1>{this.state.firstName}</h1>
+            <div className='account-form'>
+            <h1 className="account-header">Update Account Information</h1>
             <form autoComplete="off" noValidate>
 							<Divider />
 							<CardContent>
 								<Grid container spacing={3}>
 									<Grid item md={6} xs={12}>
+                                    <p className='form-label'>First Name</p>
 										<TextField
 											fullWidth
-											label="First name"
+                                            className="account-input"
 											margin="dense"
 											name="firstName"
 											variant="outlined"
@@ -139,9 +144,10 @@ class account extends Component {
 										/>
 									</Grid>
 									<Grid item md={6} xs={12}>
+                                    <p className='form-label'>Last Name</p>
 										<TextField
 											fullWidth
-											label="Last name"
+                                            className="account-input"
 											margin="dense"
 											name="lastName"
 											variant="outlined"
@@ -150,28 +156,31 @@ class account extends Component {
 										/>
 									</Grid>
 									<Grid item md={6} xs={12}>
-										<TextField
+                                    <p className='form-label'>Email</p>
+                                    <TextField
 											fullWidth
-											label="Email"
+                                            className="account-input"
+                                            disabled
 											margin="dense"
 											name="email"
 											variant="outlined"
-											disabled={true}
 											value={this.state.email}
 											onChange={this.handleChange}
 										/>
 									</Grid>
 									<Grid item md={6} xs={12}>
-										<TextField
-											fullWidth
-											label="User Name"
-											margin="dense"
-											name="userHandle"
-											disabled={true}
-											variant="outlined"
-											value={this.state.username}
-											onChange={this.handleChange}
-										/>
+                                    <p id="username-caption" className='form-label'>Username</p>
+                                    <TextField
+                                        variant="outlined"
+                                        className="account-input"
+                                        required
+                                        fullWidth
+                                        id="username-details"
+                                        name="username"
+                                        autoComplete="username-details"
+                                        onChange={this.handleChange}
+                                        value={this.state.username}
+                                        />
 									</Grid>
 								</Grid>
 							</CardContent>
@@ -182,17 +191,21 @@ class account extends Component {
 						color="primary"
 						variant="contained"
 						type="submit"
-						className="submit-button"
+						className="account-submit-button"
 						onClick={this.updateFormValues}
 						disabled={
 							this.state.buttonLoading ||
 							!this.state.firstName ||
-							!this.state.lastName
+							!this.state.lastName ||
+                            !this.state.username ||
+                            !this.state.email
 						}
 					>
 						Save details
 						{this.state.buttonLoading && <CircularProgress size={30} className="button" />}
 					</Button>
+                        </div>
+            </div>
             </div>
         )
 	}

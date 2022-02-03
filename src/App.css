@@ -47,6 +47,7 @@
 .main-content{
   background-image: url('https://media.newyorker.com/photos/61e989e14c20ec321e63f851/16:9/w_1248,h_702,c_limit/wordle_big_animation2.gif');
   margin-top: -3%;
+  /* height: 100vh; */
 }
 
 .name-header{
@@ -165,6 +166,42 @@
 
 
 /* End Leaderboard */
+
+
+/* Account Page Styles */
+
+.account-main-content{
+  background-image: url('https://media.newyorker.com/photos/61e989e14c20ec321e63f851/16:9/w_1248,h_702,c_limit/wordle_big_animation2.gif');
+  height: 100vh;  
+}
+
+.account-form{
+  background-color: #3a3a3c;
+  color: white;
+  padding-bottom: 10px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.account-input{
+  color: white;
+  background-color: #818384!important;
+}
+
+.account-header{
+  color: white;
+  text-align: center;
+}
+
+.account-submit-button{
+  margin-left: 10%!important;
+}
+
+#username-caption{
+  margin-bottom: 1%;
+}
+
+/* End Account */
 
 /* Navbar styles */
 
