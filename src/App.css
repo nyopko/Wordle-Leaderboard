@@ -45,8 +45,8 @@
 /* Home Page Styles */
 
 .main-content{
-  background-color: #272729;
-  margin-top: -2.3%;
+  background-image: url('https://media.newyorker.com/photos/61e989e14c20ec321e63f851/16:9/w_1248,h_702,c_limit/wordle_big_animation2.gif');
+  margin-top: -3%;
 }
 
 .name-header{
@@ -96,12 +96,30 @@
 }
 
 .score-log-header{
-  margin-left: 1%;
+  width: 240px;
+  margin-left: 35%;
+  text-align: center;
+  text-shadow: 2px 2px black;
+  color: white;
+  background-color: #3a3a3c;
+  height: 55px;
+  margin-top: 4%;
 }
 
 .score-cards{
-  background-color: #818384!important;
-  color: black;
+  background-color: #3a3a3c!important;
+  color: white;
+}
+
+.score-text{
+  color: white;
+  margin-top: -1%;
+}
+
+.secondary-text{
+  color: white;
+  text-align: center;
+  margin-left: 2%;
 }
 
 /* End Score Page */
@@ -151,7 +169,7 @@
 /* Navbar styles */
 
 #nav-bar{
-  background-color: #565758;
+  background-color: #3a3a3c;
   color: black!important;
 }
 

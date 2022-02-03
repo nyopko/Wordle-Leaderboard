@@ -220,22 +220,30 @@ class todo extends Component {
                                 <Col md><Grid container spacing={2}>
                                     {this.state.todos.map((todo) => (
                                         <Grid item xs={12} sm={6}>
-                                            <Card className="score-cards"variant="outlined">
+                                            <Card className="score-cards" variant="outlined">
                                                 <CardContent>
-                                                    <Typography variant="h4" component="h2">
-                                                        { //Calculate Fail or Not
-                                                            (Number(todo.score) < 7)
-                                                                ? <div>Score: {todo.score}</div>
-                                                                : <div>Puzzle Failed</div>
-                                                        }
-                                                    </Typography>
-                                                    <hr></hr>
-                                                    <Typography variant="h6" component="h6">
-                                                        <b>Word: </b> {todo.body}
-                                                    </Typography>
-                                                    <Typography className={classes.pos} color="textSecondary">
-                                                        {dayjs(todo.createdAt).fromNow()}
-                                                    </Typography>
+                                                    <Container>
+                                                        <Row>
+                                                            <Col>
+                                                                <h5 className='score-text'>
+                                                                    { //Calculate Fail or Not
+                                                                        (Number(todo.score) < 7)
+                                                                            ? <div>Score: {todo.score}</div>
+                                                                            : <div>Puzzle Failed</div>
+                                                                    }
+                                                                </h5>
+                                                            </Col>
+                                                            <Col>
+                                                                <h5 className='score-text'>
+                                                                    <b>Word: </b> {todo.body}
+                                                                </h5>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                    <h6 className="secondary-text">
+                                                        Created {dayjs(todo.createdAt).fromNow()}</h6>
+                                                    </Row>
+                                                    </Container>
                                                 </CardContent>
                                                 <CardActions>
                                                     <Button size="small" color="primary" onClick={() => this.handleViewOpen({ todo })}>
@@ -258,13 +266,13 @@ class todo extends Component {
 
                     {/* Button Here */}
                     <div className="add-button">
-                    <IconButton
-                        color="primary"
-                        aria-label="Add Score"
-                        onClick={handleClickOpen}
-                    >
-                        <AddCircleIcon style={{ fontSize: 60 }} />
-                    </IconButton>
+                        <IconButton
+                            color="primary"
+                            aria-label="Add Score"
+                            onClick={handleClickOpen}
+                        >
+                            <AddCircleIcon style={{ fontSize: 60 }} />
+                        </IconButton>
                     </div>
                     {/* End Button */}
                     <main className={classes.content}>
